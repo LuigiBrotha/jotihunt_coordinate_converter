@@ -1,0 +1,129 @@
+--- Example 1 : Converting input with latitude and longitude in the correct order.
+user_input = "51.98138, 5.93388"
+
+converter(user_input)
+
+converter.input_is_wgs84 = True
+converter.input_is_address = False
+converter.input_is_rd = False
+converter = {"address" : "Voetiuslaan 41, Arnhem",
+                    "rd" : {"x" : 192557,
+                            "y" : 443805,
+                            "dist" : 0},
+                    "wgs84" : {"lat" : 51.98138,
+                               "lon" : 5.93388,
+                               "dist" : 0}, # Exact value to be determined
+                    "directions_link" : "https://www.google.com/maps/dir//51.98138,5.93388/@51.98138,5.93388,13z?entry=ttu"
+                    }
+--- Example 2 : Converting input with latitude and longitude in the incorrect order.
+# If the coordinates are given in the wrong order they should still be converterd correctly.
+user_input = "5.93388, 51.98138"
+
+converter(user_input)
+
+converter.input_is_wgs84 = True
+converter.input_is_address = False
+converter.input_is_rd = False
+converter = {"address" : "Voetiuslaan 41, Arnhem",
+                    "rd" : {"x" : 192557,
+                            "y" : 443805,
+                            "dist" : 0},
+                    "wgs84" : {"lat" : 51.98138,
+                               "lon" : 5.93388,
+                               "dist" : 0}, # Exact value to be determined
+                    "directions_link" : "https://www.google.com/maps/dir//51.98138,5.93388/@51.98138,5.93388,13z?entry=ttu"
+                    }
+--- Example 3 : Converting input with x and y in the correct order.
+
+user_input = "192557, 443805"
+
+converter(user_input)
+
+converter.input_is_wgs84 = False
+converter.input_is_address = False
+converter.input_is_rd = True
+converter = {"address" : "Voetiuslaan 41, Arnhem",
+                    "rd" : {"x" : 192557,
+                            "y" : 443805,
+                            "dist" : 0}, # Exact value to be determined
+                    "wgs84" : {"lat" : 51.98138,
+                               "lon" : 5.93388},
+                    "directions_link" : "https://www.google.com/maps/dir//51.98138,5.93388/@51.98138,5.93388,13z?entry=ttu"
+                    }
+--- Example 4 : Converting input with x and y in the incorrect order.
+user_input = "443805, 192557"
+
+converter(user_input)
+
+converter.input_is_wgs84 = False
+converter.input_is_address = False
+converter.input_is_rd = True
+converter = {"address" : "Voetiuslaan 41, Arnhem",
+                    "rd" : {"x" : 192557,
+                            "y" : 443805,
+                               "dist" : 0}, # Exact value to be determined
+                    "wgs84" : {"lat" : 51.98138,
+                               "lon" : 5.93388,
+                               "dist" : 0},
+                    "directions_link" : "https://www.google.com/maps/dir//51.98138,5.93388/@51.98138,5.93388,13z?entry=ttu"
+                    }
+--- Example 5 : Converting input with a address
+user_input = "Voetiuslaan 41, Arnhem"
+
+converter(user_input)
+
+converter.input_is_wgs84 = False
+converter.input_is_address = True
+converter.input_is_rd = False
+converter = {"address" : "Voetiuslaan 41, Arnhem",
+                    "rd" : {"x" : 192557,
+                            "y" : 443805,
+                               "dist" : 0},
+                    "wgs84" : {"lat" : 51.98138,
+                               "lon" : 5.93388,
+                               "dist" : 0},
+                    "directions_link" : "https://www.google.com/maps/dir//51.98138,5.93388/@51.98138,5.93388,13z?entry=ttu"
+                    }
+
+--- Example 6 : Converter should have the following properties
+
+Converter.input_is_wgs84 : bool # Check if the input is wgs84 or not.
+Converter.input_is_rd : bool #
+Converter.input_is_address : bool # Check if the input is an address or not
+                                    (Addresses are very open to interpertation.
+                                    If the user input is not wgs84 or RD it's an address)
+
+Converter.wgs84_tolerance : float # Distance tolerance for wgs84.
+Converter.rd_tolerance : float # Distance tolerance for rd.
+
+Converter.wgs84 : (lat : float, lon : float) # wgs84 coordinates
+
+Converter.lat : float # Latitude of the wgs84 coordinate
+Converter.lon : float # Longitude of the wgs84 coordinate
+
+Converter.rd : (x : float, y : float) # Rd coordinates
+
+Converter.x : float # X coordinate in RD-coordinates
+Converter.y : float # Y coordinate in RD-coordinates
+
+Converter.address : str # Address with the formatting "{street} {housenumber}, {city}"
+
+Converter.directions_link : str # A google maps link giving directions to the destination
+
+Converter.wgs84_conv_distance : None|float # If converter.input_is_wgs84 :
+
+                                               Convert.wgs84 it to rd and then convert rd back to wgs84 and
+                                               calculate the distance between the input and output wgs84.
+
+                                             else:
+
+                                               None
+
+Converter.rd_conv_distance : None|float # If converter.input_is_wgs84 :
+
+                                               Convert.rd it to wgs84 and then convert wgs84 back to rd and
+                                               calculate the distance between the input and output rd.
+
+                                             else:
+
+                                               None
