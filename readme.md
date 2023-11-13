@@ -7,7 +7,6 @@ scouting event in Gelderland, The Netherlands. For more information visit www.jo
 
 ## Requirements
 
-- Easy to use both on phone and laptop.
 - Can convert :
   - EPSG : 28992 RD-coordinates (Dutch coordinate system)
   - EPSG : 4326 WGS84 (World wide coordinate system)
@@ -16,6 +15,3 @@ scouting event in Gelderland, The Netherlands. For more information visit www.jo
   - RD-coordinates
   - WGS84 coordinates
   - address
-  - Is the coordinate within the games area
-  - A link to drive to the requested location
-  - A map with a marker at the location.
