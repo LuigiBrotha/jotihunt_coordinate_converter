@@ -1,3 +1,6 @@
+"""
+Helper module which makes reading conversions of RD and WGS84 easier.
+"""
 from pyproj import CRS, Transformer
 from geopy.geocoders import Nominatim
 
@@ -11,4 +14,3 @@ if __name__ == "__main__":
     geolocator = Nominatim(user_agent="sollicitatie")
     location = geolocator.reverse("52.509669, 13.376294")
     print(location)
-
