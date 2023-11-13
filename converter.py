@@ -56,6 +56,8 @@ class Converter:
     @input_string.setter
     def input_string(self, input_string: str):
         self._input_string = input_string
+        self.coords
+        self._get_input_type_
 
     @property
     def coords(self) -> (float, float):
@@ -146,5 +148,8 @@ class Converter:
 
 
 if __name__ == "__main__":
-    converter = Converter("192550, 443807")
+    converter = Converter("Voetiuslaan 41, Arnhem")
     print(converter.dict)
+    converter.input_string = "Klarenbeekstraat 57, Arnhem"
+    print(converter.dict)
+
