@@ -128,7 +128,9 @@ class Converter:
 
             self._lat, self._lon = RD_to_WGS84.transform(self._x, self._y)
 
-            self._address = self.geolocator.reverse(f"{self._lat}, {self.lon}")
+            self._address = self.geolocator.reverse(
+                f"{self._lat}, {self.lon}").address
+
 
         elif is_wgs_84:
             self._input_is_rd = False
