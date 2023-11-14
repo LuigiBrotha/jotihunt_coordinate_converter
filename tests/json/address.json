@@ -1,0 +1,15 @@
+{
+  "input_string": "Voetiuslaan 41 Arnhem",
+  "input_is_rd": false,
+  "input_is_wgs84": false,
+  "input_is_address": true,
+  "wgs84": {
+    "lat": 51.9814005,
+    "lon": 5.9337964
+  },
+  "rd": {
+    "x": 192550.99910896886,
+    "y": 443807.72382700193
+  },
+  "address": "André de Thaye, 41, Voetiuslaan, Statenkwartier, Arnhem, Gelderland, Nederland, 6828 TD, Nederland"
+}
